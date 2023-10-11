@@ -15,6 +15,8 @@
 
   let x: number, y: number, w: number, h: number;
 
+  $: console.log(container);
+
   const onPointerDown = (evt: PointerEvent) => {
     origin = transform.elementToImage(evt.offsetX, evt.offsetY);
     anchor = origin;
