@@ -17,25 +17,34 @@
   export let pointerTransform: ((point: Point) => Point) | undefined = undefined;
   export let scale = 1;
 
-  $: if (!source) connection = undefined;
-
-  /** Responsive scaling **/
-  let svgEl: SVGSVGElement;
   let connections: ConnectionAnnotation[] = [];
-  let connection: Connection | undefined;
+
+  let connectionRefs: { [key: string]: Connector } = {};
+
+  let floatingConnection: Connection | undefined;
+
+  $: if (!source) floatingConnection = undefined;
+
+  let svgEl: SVGSVGElement;
 
   const { selection, store } = state;
+
+  export const getMidpoint = (id: string) => {
+    const component = connectionRefs[id];
+    if (component)
+      return component.getMidpoint();
+  }
 
   const isPinned = (handle?: ConnectionHandle): handle is PinnedConnectionHandle => 
     handle !== undefined && 'direction' in handle;
 
   const onPointerDown = (evt: PointerEvent) => {
-    if (isPinned(connection?.end)) {
+    if (isPinned(floatingConnection?.end)) {
       evt.preventDefault();
       evt.stopPropagation();
 
-      const from = connection.start.annotation.id;
-      const to = connection.end.annotation.id;
+      const from = floatingConnection.start.annotation.id;
+      const to = floatingConnection.end.annotation.id;
 
       const id = uuidv4();
 
@@ -65,9 +74,9 @@
 
     const target = store.getAt(pt.x, pt.y);
     if (target)
-      connection = getConnection(source, target);
+      floatingConnection = getConnection(source, target);
     else
-      connection = getConnection(source, { point: pt });
+      floatingConnection = getConnection(source, { point: pt });
   }
 
   onMount(() => {
@@ -99,17 +108,17 @@
   <g class="a9s-connectors" transform={layerTransform}>
     {#each connections as connection}
       <Connector
+        bind:this={connectionRefs[connection.id]}
         annotation={connection}
         scale={scale}
         state={state} 
         isSelected={isSelected(connection.id)}/>
     {/each}
 
-
-    {#if connection}
+    {#if floatingConnection}
       <g class="a9s-rubberband">
         <RubberbandConnector 
-          connection={connection} 
+          connection={floatingConnection} 
           scale={scale} />
       </g>
     {/if}

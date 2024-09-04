@@ -34,6 +34,7 @@
     <div id="content">    
       <div>
         <button id="relations">Mode: Annotate</button>
+        <button id="get-midpoint">Midpoint</button>
       </div>
 
       <img id="sample-image" src="640px-Hallstatt.jpg" />
@@ -51,23 +52,35 @@
         });
 
         anno.loadAnnotations('./annotations.w3c.json');
+
+        var selected = [];
         
         anno.on('createAnnotation', annotation => console.log('created', annotation));
-        anno.on('selectionChanged', selected => console.log(selected));
+        anno.on('selectionChanged', s => {
+          console.log(s);
+          selected = s;
+        });
 
         const connectors = mountPlugin(anno);
 
-        var button = document.getElementById('relations');
-        button.addEventListener('click', function() {
-          if (button.innerText === 'Mode: Annotate') {
-            button.innerText = 'Mode: Relations';
+        var relationsBtn = document.getElementById('relations');
+        relationsBtn.addEventListener('click', function() {
+          if (relationsBtn.innerText === 'Mode: Annotate') {
+            relationsBtn.innerText = 'Mode: Relations';
             anno.setUserSelectAction('SELECT');
             connectors.setEnabled(true);
           } else {
-            button.innerText = 'Mode: Annotate';
+            relationsBtn.innerText = 'Mode: Annotate';
             anno.setUserSelectAction('EDIT');
             connectors.setEnabled(false);
           }
+        });
+
+        var midpointBtn = document.getElementById('get-midpoint');
+        midpointBtn.addEventListener('click', function() {
+          var first = selected[0]?.id;
+          if (first)
+            console.log('midpoint:', connectors.getMidpoint(first));
         });
       }
     </script>

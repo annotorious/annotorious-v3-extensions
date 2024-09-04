@@ -7,6 +7,8 @@ import type {
 
 export interface ConnectorPluginInstance {
 
+  getMidpoint(id: string): void;
+
   setEnabled(enabled: boolean): void;
 
   unmount(): void;
@@ -36,6 +38,9 @@ export const mountPlugin = (anno: ImageAnnotator<ImageAnnotation>): ConnectorPlu
 
   /** API **/
 
+  const getMidpoint = (id: string) =>
+    connectorLayer.getMidpoint(id);
+
   const setEnabled = (enabled: boolean) => {
     isEnabled = enabled;
     connectorLayer.$set({ source: undefined });
@@ -46,6 +51,7 @@ export const mountPlugin = (anno: ImageAnnotator<ImageAnnotation>): ConnectorPlu
   }
 
   return { 
+    getMidpoint,
     setEnabled,
     unmount
   }
