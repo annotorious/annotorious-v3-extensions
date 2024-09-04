@@ -1,1 +1,1 @@
-export * from './createOSDConnectorsPlugin';
+export * from './osdConnectorsPlugin';

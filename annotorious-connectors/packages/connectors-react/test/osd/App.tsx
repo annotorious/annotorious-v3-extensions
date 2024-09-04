@@ -6,7 +6,7 @@ import {
   useAnnotator,
 } from '@annotorious/react';
 import { W3CImageRelationFormat } from '@annotorious/plugin-connectors'; 
-import { OSDConnectorPlugin} from '../../src';
+import { OSDConnectionPopup, OSDConnectorPlugin} from '../../src';
 
 import '@annotorious/openseadragon/annotorious-openseadragon.css';
 import '@annotorious/plugin-connectors/annotorious-connectors.css';
@@ -88,8 +88,14 @@ export const App = () => {
         <OpenSeadragonViewer className="openseadragon" options={OSD_OPTIONS} />
         
         <OSDConnectorPlugin 
-          enabled={relationsEnabled} />
+          enabled={relationsEnabled}>
 
+          <OSDConnectionPopup
+            popup={() => (
+              <div>Hello World</div>
+            )} />
+            
+        </OSDConnectorPlugin>
       </OpenSeadragonAnnotator>
     </div>
   )

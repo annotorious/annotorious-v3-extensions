@@ -1,13 +1,17 @@
 import type OpenSeadragon from 'openseadragon';
 import { UserSelectAction } from '@annotorious/openseadragon';
 import OSDConnectorLayer from './OSDConnectorLayer.svelte';
+import type { ConnectorPluginInstance } from '../connectorsPlugin';
 import type { 
   ImageAnnotation,
   ImageAnnotator,
   ImageAnnotatorState
 } from '@annotorious/annotorious';
 
-export const mountOSDPlugin = (anno: ImageAnnotator<ImageAnnotation>, viewer: OpenSeadragon.Viewer) => {
+export const mountOSDPlugin = (
+  anno: ImageAnnotator<ImageAnnotation>, 
+  viewer: OpenSeadragon.Viewer
+): ConnectorPluginInstance  => {
 
   const { store, selection } = anno.state;
 
@@ -33,6 +37,9 @@ export const mountOSDPlugin = (anno: ImageAnnotator<ImageAnnotation>, viewer: Op
 
   /** API **/
 
+  const getMidpoint = (id: string) =>
+    connectorLayer.getMidpoint(id);
+
   const setEnabled = (enabled: boolean) => {
     isEnabled = enabled;
 
@@ -49,6 +56,7 @@ export const mountOSDPlugin = (anno: ImageAnnotator<ImageAnnotation>, viewer: Op
   const unmount = () => unsubscribe();
 
   return { 
+    getMidpoint,
     setEnabled,
     unmount
   }

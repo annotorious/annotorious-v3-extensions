@@ -35,7 +35,7 @@ export const App = () => {
         <ConnectionPopup 
           popup={() => (
             <div>Hello World</div>
-          )}/>
+          )} />
 
       </ConnectorPlugin>
     </div>

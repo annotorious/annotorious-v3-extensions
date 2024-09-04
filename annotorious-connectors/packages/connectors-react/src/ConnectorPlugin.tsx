@@ -1,6 +1,6 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
-import { AnnotoriousPlugin } from '@annotorious/react';
-import { ConnectorPluginInstance, mountPlugin } from '@annotorious/plugin-connectors';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { AnnotoriousImageAnnotator, AnnotoriousPlugin } from '@annotorious/react';
+import { ConnectorPluginInstance, mountPlugin as _mountPlugin } from '@annotorious/plugin-connectors';
 import { ConnectorPluginProvider } from './ConnectorPluginProvider';
 
 interface ConnectorPluginProps {
@@ -16,6 +16,8 @@ export const ConnectorPlugin = (props: ConnectorPluginProps) => {
   const ref = useRef<ConnectorPluginInstance>();
 
   const [instance, setInstance] = useState<ConnectorPluginInstance>();
+
+  const mountPlugin = useCallback((anno: AnnotoriousImageAnnotator) => _mountPlugin(anno), []);
 
   useEffect(() => {
     ref.current?.setEnabled(props.enabled);

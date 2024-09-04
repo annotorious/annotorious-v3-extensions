@@ -10,6 +10,10 @@
   export let state: ImageAnnotatorState<ImageAnnotation>;
   export let viewer: OpenSeadragon.Viewer;
 
+  let connectorLayer: ConnectorLayer;
+
+  export const getMidpoint = (id: string) => connectorLayer.getMidpoint(id);
+
   const pointerTransform = (point: Point): Point => {
     const {x, y} = viewer.viewport.viewerElementToImageCoordinates(new OpenSeadragon.Point(point.x, point.y));
     return { x, y };
@@ -22,6 +26,7 @@
   let:scale>
 
   <ConnectorLayer 
+    bind:this={connectorLayer}
     scale={scale}
     source={source}
     state={state} 
