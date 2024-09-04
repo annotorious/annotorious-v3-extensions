@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "@annotorious/plugin-connectors": "0.1.0",
-    "@floating-ui/react": "^0.26.23"
+    "@floating-ui/react": "^0.26.23",
+    "uuid": "^10.0.0"
   },
   "sideEffects": false
 }

@@ -1,5 +1,8 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
-import { useConnectionSelection } from '../hooks/useConnectionSelection';
+import { useAnnotator } from '@annotorious/react';
+import { ImageAnnotator } from '@annotorious/annotorious';
+import { useConnectionSelection, usePopupCallbacks } from '../hooks';
+import { ConnectionPopupProps } from '../ConnectionPopupProps';
 import {
   useFloating,
   arrow,
@@ -10,17 +13,14 @@ import {
   offset,
   FloatingArrow
 } from '@floating-ui/react';
-import { ConnectionAnnotation } from '@annotorious/plugin-connectors';
-import { useAnnotator } from '@annotorious/react';
-import { ImageAnnotator } from '@annotorious/annotorious';
 
-interface ConnectionPopupProps {
+interface ConnectionPopupContainerProps {
 
-  popup(annotation: ConnectionAnnotation): ReactNode;
+  popup(props: ConnectionPopupProps): ReactNode;
 
 }
 
-export const ConnectionPopup = (props: ConnectionPopupProps) => {
+export const ConnectionPopup = (props: ConnectionPopupContainerProps) => {
 
   const arrowRef = useRef(null);
 
@@ -29,6 +29,8 @@ export const ConnectionPopup = (props: ConnectionPopupProps) => {
   const { annotation, midpoint } = useConnectionSelection();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const { onCreateBody, onDeleteBody, onUpdateBody } = usePopupCallbacks(annotation);
 
   const { refs, floatingStyles, context, update } = useFloating({
     open: isOpen,
@@ -100,7 +102,12 @@ export const ConnectionPopup = (props: ConnectionPopupProps) => {
         ref={arrowRef} 
         context={context} />
 
-      {props.popup(annotation)}
+      {props.popup({ 
+        annotation,
+        onCreateBody,
+        onDeleteBody,
+        onUpdateBody
+      })}
     </div>
   )
 

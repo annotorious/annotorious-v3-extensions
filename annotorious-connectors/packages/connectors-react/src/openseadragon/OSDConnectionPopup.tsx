@@ -1,7 +1,8 @@
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import OpenSeadragon from 'openseadragon';
-import { ConnectionAnnotation } from '@annotorious/plugin-connectors';
 import { AnnotoriousOpenSeadragonAnnotator, useAnnotator, useViewer } from '@annotorious/react';
+import { useConnectionSelection, usePopupCallbacks } from '../hooks';
+import { ConnectionPopupProps } from '../ConnectionPopupProps';
 import {
   useFloating,
   arrow,
@@ -12,11 +13,10 @@ import {
   offset,
   FloatingArrow
 } from '@floating-ui/react';
-import { useConnectionSelection } from 'src/hooks';
 
 interface OSDConnectionPopupProps {
 
-  popup(annotation: ConnectionAnnotation): ReactNode;
+  popup(props: ConnectionPopupProps): ReactNode;
 
 }
 
@@ -31,6 +31,8 @@ export const OSDConnectionPopup = (props: OSDConnectionPopupProps) => {
   const arrowRef = useRef(null);
 
   const { annotation, midpoint } = useConnectionSelection();
+
+  const { onCreateBody, onDeleteBody, onUpdateBody } = usePopupCallbacks(annotation);
 
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
@@ -107,7 +109,12 @@ export const OSDConnectionPopup = (props: OSDConnectionPopupProps) => {
         ref={arrowRef} 
         context={context} />
 
-      {props.popup(annotation)}
+      {props.popup({
+        annotation,
+        onCreateBody,
+        onDeleteBody,
+        onUpdateBody
+      })}
     </div>
   )
 
