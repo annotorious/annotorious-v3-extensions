@@ -20,7 +20,7 @@
     "vite-tsconfig-paths": "^5.0.1"
   },
   "peerDependencies": {
-    "@annotorious/react": "file:../../../../annotorious/packages/annotorious-react",
+    "@annotorious/react": "^3.0.4",
     "openseadragon": "^3.0.0 || ^4.0.0 || ^5.0.0",
     "react": "16.8.0 || >=17.x || >=18.x",
     "react-dom": "16.8.0 || >=17.x || >=18.x"
