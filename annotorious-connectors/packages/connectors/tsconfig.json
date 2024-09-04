@@ -1,13 +1,14 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": ".",
     "checkJs": true,
-    "declaration": true,
-    "declarationMap": true,
+    "composite": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "incremental": false,
+    "ignoreDeprecations": "5.0",
+    "incremental": true,
     "isolatedModules": true,
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -15,8 +16,9 @@
     "resolveJsonModule": true,
     "skipLibCheck": false,
     "sourceMap": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "verbatimModuleSyntax": true
   },
-  "include": ["./src/**/*", "./test/**/*"],
+  "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./dist"]
 }
