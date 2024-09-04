@@ -1,6 +1,6 @@
 {
   "name": "@annotorious/plugin-connectors",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "An Annotorious plugin for drawing elbow connectors between annotations.",
   "author": "Rainer Simon",
   "license": "BSD-3-Clause",
@@ -24,19 +24,19 @@
     "./annotorious-connectors.css": "./dist/annotorious-connectors.css"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^3.1.1",
+    "@sveltejs/vite-plugin-svelte": "^3.1.2",
     "@tsconfig/svelte": "^5.0.4",
     "@types/openseadragon": "^3.0.10",
     "@types/uuid": "^10.0.0",
-    "svelte": "^4.2.18",
+    "svelte": "^4.2.19",
     "svelte-preprocess": "^6.0.2",
-    "typescript": "5.5.3",
-    "vite": "^5.3.5",
-    "vite-plugin-dts": "^3.9.1"
+    "typescript": "5.5.4",
+    "vite": "^5.4.3",
+    "vite-plugin-dts": "^4.1.0"
   },
   "peerDependencies": {
-    "@annotorious/annotorious": "^3.0.0-rc.31",
-    "openseadragon": "^3.0.0 || ^4.0.0"
+    "@annotorious/annotorious": "^3.0.4",
+    "openseadragon": "^3.0.0 || ^4.0.0 || ^5.0.0"
   },
   "peerDependenciesMeta": {
     "openseadragon": {
