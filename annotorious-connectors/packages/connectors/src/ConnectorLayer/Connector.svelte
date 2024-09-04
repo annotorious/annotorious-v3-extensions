@@ -34,7 +34,13 @@
     }
   }
 
-  const onPointerDown = (evt: PointerEvent) => selection.userSelect(annotation.id, evt);
+  const onPointerDown = (evt: PointerEvent) => {
+    // Stop the event, so the underlying annotation canvas
+    // doesn't register an empty click, and de-selects.
+    evt.preventDefault();
+
+    selection.userSelect(annotation.id, evt);
+  }
 
   onMount(() => {
     const onChange = () => connection = computeConnection(annotation);

@@ -44,7 +44,7 @@
     }
   },
   "dependencies": {
-    "@annotorious/openseadragon": "^3.0.0-rc.31",
+    "@annotorious/openseadragon": "file:../../../../annotorious/packages/annotorious-openseadragon",
     "nanoevents": "^9.0.0",
     "svg-round-corners": "^0.4.3",
     "uuid": "^10.0.0"
