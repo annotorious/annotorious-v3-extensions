@@ -21,8 +21,6 @@ export const useConnectionSelection = () => {
 
   const selection = useSelection<ImageAnnotation | ConnectionAnnotation>();
 
-  console.log(selection);
-
   const connectionSelection: ConnectionSelection = useMemo(() => {
     if (!plugin) return {};
 

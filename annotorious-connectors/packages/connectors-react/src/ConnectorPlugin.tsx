@@ -27,6 +27,8 @@ export const ConnectorPlugin = (props: ConnectorPluginProps) => {
         pluginRef={ref}
         plugin={mountPlugin} 
         onLoad={instance => setInstance(instance as ConnectorPluginInstance)} />
+
+      {props.children}
     </ConnectorPluginProvider>
   )
 

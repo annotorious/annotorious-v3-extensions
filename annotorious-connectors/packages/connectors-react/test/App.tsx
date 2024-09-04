@@ -31,7 +31,12 @@ export const App = () => {
 
       <ConnectorPlugin 
         enabled={mode === 'RELATIONS'}>
-        <ConnectionPopup />
+
+        <ConnectionPopup 
+          popup={() => (
+            <div>Hello World</div>
+          )}/>
+
       </ConnectorPlugin>
     </div>
   )
