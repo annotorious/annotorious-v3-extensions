@@ -76,7 +76,7 @@
     <circle class="a9s-connector-handle-inner" cx={path.end.x} cy={path.end.y} r={r} />
 
     {#if midPoint}
-      <circle cx={midPoint.x} cy={midPoint.y} r="2.5" fill="red" />
+      <circle class="a9s-connector-midpoint" cx={midPoint.x} cy={midPoint.y} r={r} />
     {/if}
   {/if}
 </g>
@@ -128,5 +128,9 @@
     stroke: #fff;
     stroke-width: 1.5;
     vector-effect: non-scaling-stroke;
+  }
+  
+  circle.a9s-connector-midpoint {
+    fill: #ff0000;
   }
 </style>
