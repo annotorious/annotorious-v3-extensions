@@ -1,10 +1,13 @@
-import { useConnections } from '../hooks/useConnections';
+import { useEffect } from 'react';
+import { useConnectionSelection } from 'src/hooks/useConnectionSelection';
 
 export const ConnectionPopup = () => {
 
-  const connections = useConnections();
+  const { annotation } = useConnectionSelection();
 
-  console.log('connections:', connections);
+  useEffect(() => {
+    console.log('selected:', annotation);
+  }, [annotation]);
 
   return null;
 

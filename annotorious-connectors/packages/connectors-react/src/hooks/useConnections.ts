@@ -1,11 +1,6 @@
-import { ConnectionAnnotation } from '@annotorious/plugin-connectors';
+import { ConnectionAnnotation, isConnectionAnnotation } from '@annotorious/plugin-connectors';
 import { ImageAnnotation, useAnnotations } from '@annotorious/react';
 import { useMemo } from 'react';
-
-const isConnectionAnnotation = (annotation: ImageAnnotation | ConnectionAnnotation): annotation is ConnectionAnnotation =>
-  (annotation as ConnectionAnnotation).motivation !== undefined &&
-  (annotation as ConnectionAnnotation).motivation === 'linking';
-
 
 /**
  * A utility hook similar to useAnnotations, but filtering 
