@@ -10,6 +10,7 @@ import { OSDConnectionPopup, OSDConnectorPlugin} from '../../src';
 
 import '@annotorious/openseadragon/annotorious-openseadragon.css';
 import '@annotorious/plugin-connectors/annotorious-connectors.css';
+import { DemoLabelPopup } from './DemoLabelPopup';
 
 const IIIF_SAMPLE = {
   "@context" : "http://iiif.io/api/image/2/context.json",
@@ -91,10 +92,7 @@ export const App = () => {
           enabled={relationsEnabled}>
 
           <OSDConnectionPopup
-            popup={() => (
-              <div>Hello World</div>
-            )} />
-            
+            popup={props => (<DemoLabelPopup {...props} />)} />
         </OSDConnectorPlugin>
       </OpenSeadragonAnnotator>
     </div>

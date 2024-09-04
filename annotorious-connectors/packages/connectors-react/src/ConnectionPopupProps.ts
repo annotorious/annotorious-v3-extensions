@@ -5,9 +5,9 @@ export interface ConnectionPopupProps {
 
   annotation: ConnectionAnnotation;
 
-  onCreateBody(body: AnnotationBody): void;
+  onCreateBody(body: Partial<AnnotationBody>): void;
 
   onDeleteBody(id: string): void;
 
-  onUpdateBody(current: AnnotationBody, next: AnnotationBody): void;
+  onUpdateBody(current: Partial<AnnotationBody>, next: Partial<AnnotationBody>): void;
 }
