@@ -29,10 +29,10 @@ export const App = () => {
         <img src="640px-Hallstatt.jpg" />
       </ImageAnnotator>
 
-      <ConnectorPlugin />
+      <ConnectorPlugin 
+        enabled={mode === 'RELATIONS'} />
 
       <ConnectionPopup />
-      
     </div>
   )
 

@@ -1,5 +1,11 @@
-import { useAnnotations } from '@annotorious/react';
+import { ConnectionAnnotation } from '@annotorious/plugin-connectors';
+import { ImageAnnotation, useAnnotations } from '@annotorious/react';
 import { useMemo } from 'react';
+
+const isConnectionAnnotation = (annotation: ImageAnnotation | ConnectionAnnotation): annotation is ConnectionAnnotation =>
+  (annotation as ConnectionAnnotation).motivation !== undefined &&
+  (annotation as ConnectionAnnotation).motivation === 'linking';
+
 
 /**
  * A utility hook similar to useAnnotations, but filtering 
@@ -7,12 +13,11 @@ import { useMemo } from 'react';
  */
 export const useConnections = () => {
 
-  const annotations = useAnnotations();
+  const annotations = useAnnotations<ImageAnnotation | ConnectionAnnotation>();
 
-  const connections = useMemo(() => {
-    // TODO
-    return annotations;
-  }, [annotations]);
+  const connections = useMemo(() => (
+    annotations.filter(isConnectionAnnotation)
+  ), [annotations]);
 
   return connections;
   

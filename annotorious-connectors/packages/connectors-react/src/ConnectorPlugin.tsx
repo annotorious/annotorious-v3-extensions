@@ -1,10 +1,25 @@
+import { useEffect, useRef } from 'react';
 import { AnnotoriousPlugin } from '@annotorious/react';
-import { mountPlugin } from '@annotorious/plugin-connectors';
+import { ConnectorPluginInstance, mountPlugin } from '@annotorious/plugin-connectors';
 
-export const ConnectorPlugin = () => {
+interface ConnectorPluginProps {
+
+  enabled?: boolean;
+
+}
+
+export const ConnectorPlugin = (props: ConnectorPluginProps) => {
+
+  const ref = useRef<ConnectorPluginInstance>();
+
+  useEffect(() => {
+    ref.current?.setEnabled(props.enabled);
+  }, [props.enabled]);
 
   return (
-    <AnnotoriousPlugin plugin={mountPlugin} />
+    <AnnotoriousPlugin 
+      pluginRef={ref}
+      plugin={mountPlugin} />
   )
 
 }

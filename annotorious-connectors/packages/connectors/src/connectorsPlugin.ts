@@ -5,7 +5,15 @@ import type {
   ImageAnnotatorState,
 } from '@annotorious/annotorious';
 
-export const mountPlugin = (anno: ImageAnnotator<ImageAnnotation>) => {
+export interface ConnectorPluginInstance {
+
+  setEnabled(enabled: boolean): void;
+
+  unmount(): void;
+
+}
+
+export const mountPlugin = (anno: ImageAnnotator<ImageAnnotation>): ConnectorPluginInstance => {
 
   const { store, selection } = anno.state;
 
