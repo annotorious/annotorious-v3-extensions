@@ -1,25 +1,36 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import type { SvelteImageAnnotatorState } from '@annotorious/annotorious';
+  import type { ImageAnnotation, ImageAnnotatorState } from '@annotorious/annotorious';
   import { computePath, getConnection } from '../layout';
-  import type { ConnectionAnnotation } from 'src/model';
+  import type { Connection, ConnectionAnnotation } from 'src/model';
 
   /** Props */
   export let annotation: ConnectionAnnotation;
-  export let state: SvelteImageAnnotatorState;
+  export let state: ImageAnnotatorState<ImageAnnotation>;
   export let isSelected: boolean;
   export let scale: number;
+
+  let pathElement: SVGPathElement;
 
   const { selection, store } = state;
 
   $: r = 5 / scale;
+  
+  $: connection = computeConnection(annotation);
+
+  $: midPoint = computeMidPoint(pathElement, connection);
 
   const computeConnection = (annotation: ConnectionAnnotation) =>
     getConnection(
       store.getAnnotation(annotation.target.selector.from)!, 
       store.getAnnotation(annotation.target.selector.to)!);
 
-  $: connection = computeConnection(annotation);
+  const computeMidPoint = (el: SVGPathElement, connection: Connection) => {
+    if (el && connection) {
+      const length = el.getTotalLength();
+      return el.getPointAtLength(length / 2);
+    }
+  }
 
   const onPointerDown = (evt: PointerEvent) => selection.userSelect(annotation.id, evt);
 
@@ -39,7 +50,9 @@
 <g class="a9s-connector">
   {#if connection}
     {@const path = computePath(connection, 10)}
+
     <path 
+      bind:this={pathElement}
       class="a9s-connector-path-buffer"
       class:selected={isSelected}
       d={path.d} 
@@ -53,6 +66,10 @@
 
     <circle class="a9s-connector-handle-outer" cx={path.end.x} cy={path.end.y} r={r} />
     <circle class="a9s-connector-handle-inner" cx={path.end.x} cy={path.end.y} r={r} />
+
+    {#if midPoint}
+      <circle cx={midPoint.x} cy={midPoint.y} r="2.5" fill="red" />
+    {/if}
   {/if}
 </g>
 

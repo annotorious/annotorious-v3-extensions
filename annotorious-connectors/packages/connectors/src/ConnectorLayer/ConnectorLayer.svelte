@@ -2,7 +2,7 @@
   import { createEventDispatcher, onMount } from 'svelte';
   import { v4 as uuidv4 } from 'uuid';
   import { getSVGPoint } from '@annotorious/annotorious';
-  import type { Annotation, ImageAnnotation, StoreChangeEvent, SvelteImageAnnotatorState } from '@annotorious/annotorious';
+  import type { Annotation, ImageAnnotation, ImageAnnotatorState, StoreChangeEvent } from '@annotorious/annotorious';
   import { getConnection } from '../layout';
   import type { Connection, ConnectionAnnotation, ConnectionHandle, PinnedConnectionHandle, Point } from '../model';
   import Connector from './Connector.svelte';
@@ -12,7 +12,7 @@
 
   /** Props */
   export let source: ImageAnnotation | undefined;
-  export let state: SvelteImageAnnotatorState;
+  export let state: ImageAnnotatorState<ImageAnnotation>;
   export let layerTransform: string | undefined = undefined;
   export let pointerTransform: ((point: Point) => Point) | undefined = undefined;
   export let scale = 1;

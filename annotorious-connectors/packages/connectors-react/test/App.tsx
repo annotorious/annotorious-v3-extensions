@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ImageAnnotator, useAnnotator } from '@annotorious/react';
 import { W3CImageRelationFormat } from '@annotorious/plugin-connectors'; 
-import { ConnectorPlugin } from '../src';
+import { ConnectionPopup, ConnectorPlugin } from '../src';
 
 export const App = () => {
 
@@ -30,6 +30,9 @@ export const App = () => {
       </ImageAnnotator>
 
       <ConnectorPlugin />
+
+      <ConnectionPopup />
+      
     </div>
   )
 

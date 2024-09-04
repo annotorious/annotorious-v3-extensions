@@ -4,10 +4,10 @@ import OSDConnectorLayer from './OSDConnectorLayer.svelte';
 import type { 
   ImageAnnotation,
   ImageAnnotator,
-  SvelteImageAnnotatorState
+  ImageAnnotatorState
 } from '@annotorious/annotorious';
 
-export const mountOSDPlugin = (anno: ImageAnnotator, viewer: OpenSeadragon.Viewer) => {
+export const mountOSDPlugin = (anno: ImageAnnotator<ImageAnnotation>, viewer: OpenSeadragon.Viewer) => {
 
   const { store, selection } = anno.state;
 
@@ -17,7 +17,7 @@ export const mountOSDPlugin = (anno: ImageAnnotator, viewer: OpenSeadragon.Viewe
     target: viewer.element.querySelector('.openseadragon-canvas')!,
     props: {
       source: undefined as ImageAnnotation | undefined,
-      state: anno.state as SvelteImageAnnotatorState,
+      state: anno.state as ImageAnnotatorState<ImageAnnotation>,
       viewer
     }
   });
