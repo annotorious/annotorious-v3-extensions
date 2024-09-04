@@ -30,9 +30,9 @@ export const App = () => {
       </ImageAnnotator>
 
       <ConnectorPlugin 
-        enabled={mode === 'RELATIONS'} />
-
-      <ConnectionPopup />
+        enabled={mode === 'RELATIONS'}>
+        <ConnectionPopup />
+      </ConnectorPlugin>
     </div>
   )
 

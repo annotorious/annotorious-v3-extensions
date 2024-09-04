@@ -26,7 +26,7 @@ export const OSDConnectorPlugin = (props: OSDConnectorPluginProps) => {
 
   return (
     <AnnotoriousPlugin 
-      ref={pluginInstance}
+      pluginRef={pluginInstance}
       plugin={mountPlugin} />
   )
 

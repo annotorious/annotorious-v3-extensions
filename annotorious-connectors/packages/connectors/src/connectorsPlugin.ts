@@ -1,13 +1,10 @@
+import type { ImageAnnotation, ImageAnnotator, ImageAnnotatorState } from '@annotorious/annotorious';
+import type { Point } from './model';
 import { ConnectorLayer } from './ConnectorLayer';
-import type { 
-  ImageAnnotation,
-  ImageAnnotator,
-  ImageAnnotatorState,
-} from '@annotorious/annotorious';
 
 export interface ConnectorPluginInstance {
 
-  getMidpoint(id: string): void;
+  getMidpoint(id: string): Point | undefined;
 
   setEnabled(enabled: boolean): void;
 
