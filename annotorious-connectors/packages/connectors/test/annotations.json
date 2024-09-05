@@ -1,101 +1,38 @@
 [
   {
     "id": "bc4e604c-c06a-4c2f-bed0-175114a2b8a1",
-    "bodies": [],
     "target": {
-      "annotation": "bc4e604c-c06a-4c2f-bed0-175114a2b8a1",
       "selector": {
-        "type": "RECTANGLE",
-        "geometry": {
-          "bounds": {
-            "minX": 322.40234375,
-            "minY": 49.4140625,
-            "maxX": 442.91015625,
-            "maxY": 124.625
-          },
-          "x": 322.40234375,
-          "y": 49.4140625,
-          "w": 120.5078125,
-          "h": 75.2109375
-        }
-      },
-      "creator": {
-        "isGuest": true,
-        "id": "HVM488X4oICQNzQaKNXd"
-      },
-      "created": "2024-07-08T09:12:25.179Z"
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:322,49,120,75"
+      }
     }
   },
   {
     "id": "caae9eb1-d1a3-4e2c-8c5b-e939c1650da9",
-    "bodies": [],
     "target": {
-      "annotation": "caae9eb1-d1a3-4e2c-8c5b-e939c1650da9",
-      "type": "AnnoConnection",
       "selector": {
-        "type": "RECTANGLE",
-        "geometry": {
-          "x": 399.859375,
-          "y": 184.15234375,
-          "w": 119.9296875,
-          "h": 91.0859375,
-          "bounds": {
-            "minX": 399.859375,
-            "minY": 184.15234375,
-            "maxX": 519.7890625,
-            "maxY": 275.23828125
-          }
-        }
-      },
-      "creator": {
-        "isGuest": true,
-        "id": "HVM488X4oICQNzQaKNXd"
-      },
-      "created": "2024-07-08T09:12:14.644Z"
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:400,185,119,91"
+      }
     }
   },
   {
     "id": "3f3e971b-86ab-4483-9b2d-808bfb770726",
-    "bodies": [],
     "target": {
-      "annotation": "3f3e971b-86ab-4483-9b2d-808bfb770726",
       "selector": {
-        "type": "RECTANGLE",
-        "geometry": {
-          "x": 158.3125,
-          "y": 10.9375,
-          "w": 98.16796875,
-          "h": 292.23046875,
-          "bounds": {
-            "minX": 158.3125,
-            "minY": 10.9375,
-            "maxX": 256.48046875,
-            "maxY": 303.16796875
-          }
-        }
-      },
-      "creator": {
-        "isGuest": true,
-        "id": "HVM488X4oICQNzQaKNXd"
-      },
-      "created": "2024-07-08T09:12:20.661Z"
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:158,10,98,292"
+      }
     }
   },
   {
     "id": "7254e2f8-52d5-4559-8074-d058edde4445",
     "motivation": "linking",
-    "bodies": [],
-    "target": {
-      "annotation": "7254e2f8-52d5-4559-8074-d058edde4445",
-      "selector": {
-        "from": "bc4e604c-c06a-4c2f-bed0-175114a2b8a1",
-        "to": "caae9eb1-d1a3-4e2c-8c5b-e939c1650da9"
-      },
-      "creator": {
-        "isGuest": true,
-        "id": "HVM488X4oICQNzQaKNXd"
-      },
-      "created": "2024-07-08T09:12:25.179Z"
-    }
+    "body": "caae9eb1-d1a3-4e2c-8c5b-e939c1650da9",
+    "target": "bc4e604c-c06a-4c2f-bed0-175114a2b8a1"
   }
 ]

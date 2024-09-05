@@ -67,7 +67,7 @@ export const App = () => {
   useEffect(() => {
     if (!anno) return;
 
-    anno.loadAnnotations('annotations.w3c.json');
+    anno.loadAnnotations('annotations.json');
 
     anno.on('createAnnotation', a => console.log(a));
     anno.on('updateAnnotation', a => console.log(a));
