@@ -37,6 +37,7 @@
   const onPointerDown = (evt: PointerEvent) => {
     // Stop the event, so the underlying annotation canvas
     // doesn't register an empty click, and de-selects.
+    evt.stopImmediatePropagation();
     evt.preventDefault();
 
     selection.userSelect(annotation.id, evt);
@@ -87,7 +88,7 @@
 
   path.a9s-connector-path-buffer {
     cursor: pointer;
-    pointer-events:all;
+    pointer-events: all;
     stroke: rgba(255, 255, 255, 0);
     stroke-width: 8px;
     transition: stroke 125ms ease-in-out;
@@ -102,11 +103,13 @@
   }
 
   path.a9s-connector-path-outer {
+    pointer-events: none;
     stroke: #00000040;
     stroke-width: 3.5px;
   }
 
   path.a9s-connector-path-inner {
+    pointer-events: none;
     stroke: #fff;
     stroke-width: 1.5px;
     stroke-dasharray: 3 3;

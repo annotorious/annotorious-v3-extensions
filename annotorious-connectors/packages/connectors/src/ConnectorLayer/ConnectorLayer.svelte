@@ -13,11 +13,14 @@
 
   /** Props */
   export let enabled: boolean;
-  export let source: ImageAnnotation | undefined;
   export let state: ImageAnnotatorState<ImageAnnotation>;
   export let layerTransform: string | undefined = undefined;
   export let pointerTransform: ((point: Point) => Point) | undefined = undefined;
   export let scale = 1;
+
+  let source: ImageAnnotation | undefined;
+
+  let hovered: ImageAnnotation | undefined;
 
   let connections: ConnectionAnnotation[] = [];
 
@@ -29,7 +32,7 @@
 
   let svgEl: SVGSVGElement;
 
-  const { hover, selection, store } = state;
+  const { selection, store } = state;
 
   export const getMidpoint = (id: string) => {
     const component = connectionRefs[id];
@@ -41,7 +44,11 @@
     handle !== undefined && 'direction' in handle;
 
   const onPointerDown = (evt: PointerEvent) => {
-    if (isPinned(floatingConnection?.end)) {
+    selection.clear();
+
+    if (!source && hovered) {
+      source = hovered;
+    } else if (isPinned(floatingConnection?.end)) {
       evt.preventDefault();
       evt.stopPropagation();
 
@@ -72,17 +79,24 @@
   }
 
   const onPointerMove = (evt: PointerEvent) => {
-    if (!source) return;
+    hovered = undefined;
 
     const pt: Point = pointerTransform 
-      ? pointerTransform({ x: evt.offsetX, y: evt.offsetY })
-      : getSVGPoint(evt, svgEl);
+        ? pointerTransform({ x: evt.offsetX, y: evt.offsetY })
+        : getSVGPoint(evt, svgEl);
 
-    const target = store.getAt(pt.x, pt.y);
-    if (target)
-      floatingConnection = getConnection(source, target);
-    else
-      floatingConnection = getConnection(source, { point: pt });
+    const h = store.getAt(pt.x, pt.y);
+
+    if (source) {
+      // Source defined - pick target
+      if (h)
+        floatingConnection = getConnection(source, h);
+      else
+        floatingConnection = getConnection(source, { point: pt });
+    } else if (h) {
+      // Pick current hover as source
+      hovered = h;
+    }
   }
 
   onMount(() => {
@@ -109,7 +123,6 @@
   bind:this={svgEl}
   class="a9s-connector-layer"
   class:enabled={enabled}
-  class:floating={source}
   on:pointermove={onPointerMove}
   on:pointerdown={onPointerDown}>
   <g class="a9s-connectors-layer" transform={layerTransform}>
@@ -119,11 +132,8 @@
           <Emphasis annotation={source} />
         {/if}
 
-        {#if $hover}
-          {@const hovered = store.getAnnotation($hover)}
-          {#if hovered}
-            <Emphasis annotation={hovered} />
-          {/if}
+        {#if hovered && hovered !== source}
+          <Emphasis annotation={hovered} />
         {/if}
       {/if}
 
@@ -163,7 +173,7 @@
     width: 100%;
   }
 
-  svg.enabled.floating {
+  svg.enabled {
     pointer-events: all;
   }
 </style>

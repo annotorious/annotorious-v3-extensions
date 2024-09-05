@@ -14,23 +14,13 @@ export interface ConnectorPluginInstance {
 
 export const mountPlugin = (anno: ImageAnnotator<ImageAnnotation>): ConnectorPluginInstance => {
 
-  const { selection, store } = anno.state;
-
   let isEnabled = false;
 
   const connectorLayer = new ConnectorLayer({
     target: anno.element,
     props: {
       enabled: isEnabled,
-      source: undefined as ImageAnnotation | undefined,
       state: anno.state as ImageAnnotatorState<ImageAnnotation>
-    }
-  });
-
-  const unsubscribeSelection = selection.subscribe(({ selected }) => {
-    if (isEnabled && selected.length > 0) {
-      const source = store.getAnnotation(selected[0].id);
-      connectorLayer.$set(({ source }));
     }
   });
 
@@ -41,11 +31,11 @@ export const mountPlugin = (anno: ImageAnnotator<ImageAnnotation>): ConnectorPlu
 
   const setEnabled = (enabled: boolean) => {
     isEnabled = enabled;
-    connectorLayer.$set({ source: undefined, enabled: isEnabled });
+    connectorLayer.$set({ enabled: isEnabled });
   }
 
   const unmount = () => {
-    unsubscribeSelection();
+    // Nothing to do
   }
 
   return { 
