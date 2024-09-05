@@ -74,10 +74,6 @@
 
     <circle class="a9s-connector-handle-outer" cx={path.end.x} cy={path.end.y} r={r} />
     <circle class="a9s-connector-handle-inner" cx={path.end.x} cy={path.end.y} r={r} />
-
-    {#if midPoint}
-      <circle class="a9s-connector-midpoint" cx={midPoint.x} cy={midPoint.y} r={r} />
-    {/if}
   {/if}
 </g>
 
