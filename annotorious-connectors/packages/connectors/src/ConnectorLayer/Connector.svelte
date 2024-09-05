@@ -125,8 +125,4 @@
     stroke-width: 1.5;
     vector-effect: non-scaling-stroke;
   }
-  
-  circle.a9s-connector-midpoint {
-    fill: #ff0000;
-  }
 </style>
