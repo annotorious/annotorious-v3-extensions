@@ -77,6 +77,8 @@
       dispatch('create', annotation);
 
       selection.setSelected(annotation.id);
+    } else if (source) {
+      source = undefined;
     }
   }
 
