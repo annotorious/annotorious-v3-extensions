@@ -1,0 +1,38 @@
+[
+  {
+    "id": "bc4e604c-c06a-4c2f-bed0-175114a2b8a1",
+    "target": {
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:322,49,120,75"
+      }
+    }
+  },
+  {
+    "id": "caae9eb1-d1a3-4e2c-8c5b-e939c1650da9",
+    "target": {
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:400,185,119,91"
+      }
+    }
+  },
+  {
+    "id": "3f3e971b-86ab-4483-9b2d-808bfb770726",
+    "target": {
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:158,10,98,292"
+      }
+    }
+  },
+  {
+    "id": "7254e2f8-52d5-4559-8074-d058edde4445",
+    "motivation": "linking",
+    "body": "caae9eb1-d1a3-4e2c-8c5b-e939c1650da9",
+    "target": "bc4e604c-c06a-4c2f-bed0-175114a2b8a1"
+  }
+]

@@ -1,0 +1,73 @@
+[
+  {
+    "id": "c3c0a4e8-0ba0-4619-93b4-4a98cc173fda",
+    "target": {
+      "source": "https://iiif.bodleian.ox.ac.uk/iiif/image/af315e66-6a85-445b-9e26-012f729fc49c",
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:3268.041644255736,1668.0767191250181,285.6825608872591,331.1377219535775"
+      }
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "body": [],
+    "created": "2024-07-30T12:36:13.909Z",
+    "creator": {
+      "isGuest": true,
+      "id": "db5cSB8GW2kJcXgGYzJF"
+    }
+  },
+  {
+    "id": "2285e7db-78f9-44d9-849e-c7c099f1e151",
+    "target": {
+      "source": "https://iiif.bodleian.ox.ac.uk/iiif/image/af315e66-6a85-445b-9e26-012f729fc49c",
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:3721.785793786053,2203.759395674253,1119.2493349129159,1122.6169877790248"
+      }
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "body": [],
+    "created": "2024-07-30T12:36:20.511Z",
+    "creator": {
+      "isGuest": true,
+      "id": "db5cSB8GW2kJcXgGYzJF"
+    }
+  },
+  {
+    "id": "3caf5319-a363-4af4-9c37-4451e03e8668",
+    "target": {
+      "source": "https://iiif.bodleian.ox.ac.uk/iiif/image/af315e66-6a85-445b-9e26-012f729fc49c",
+      "selector": {
+        "type": "FragmentSelector",
+        "conformsTo": "http://www.w3.org/TR/media-frags/",
+        "value": "xywh=pixel:1363.7858905177573,2175.4207751783315,460.3174678093883,780.9504252193137"
+      }
+    },
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "body": [],
+    "created": "2024-07-30T12:36:28.793Z",
+    "creator": {
+      "isGuest": true,
+      "id": "db5cSB8GW2kJcXgGYzJF"
+    }
+  },
+  {
+    "id": "7254e2f8-52d5-4559-8074-d058edde4445",
+    "motivation": "linking",
+    "body": "2285e7db-78f9-44d9-849e-c7c099f1e151",
+    "target": "c3c0a4e8-0ba0-4619-93b4-4a98cc173fda"
+  },
+  {
+    "id": "323524ab-a927-4003-aa3c-56359325156a",
+    "motivation": "tagging",
+    "body": [{
+      "value": "is before"
+    }],
+    "target": "7254e2f8-52d5-4559-8074-d058edde4445"
+  }
+]

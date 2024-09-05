@@ -3,8 +3,6 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { sveltePreprocess } from 'svelte-preprocess';
 import dts from 'vite-plugin-dts';
 
-import * as packageJson from './package.json';
-
 export default defineConfig({
   plugins: [
     svelte({ preprocess: sveltePreprocess() }),
@@ -27,10 +25,15 @@ export default defineConfig({
         format === 'umd' ? `annotorious-connectors.js` : `annotorious-connectors.es.js` 
     },
     rollupOptions: {
-      external: ['@annotorious/annotorious', 'openseadragon'],
+      external: [
+        '@annotorious/annotorious', 
+        '@annotorious/openseadragon', 
+        'openseadragon'
+      ],
       output: {
         globals: {
           '@annotorious/annotorious': 'Annotorious',
+          '@annotorious/openseadragon': 'AnnotoriousOSD', 
           'openseadragon': 'OpenSeadragon'
         },
         assetFileNames: 'annotorious-connectors.[ext]'
