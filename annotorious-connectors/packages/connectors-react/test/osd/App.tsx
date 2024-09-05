@@ -68,6 +68,9 @@ export const App = () => {
     if (!anno) return;
 
     anno.loadAnnotations('annotations.w3c.json');
+
+    anno.on('createAnnotation', a => console.log(a));
+    anno.on('updateAnnotation', a => console.log(a));
   }, [anno]);
 
   const toggleMode = () => setMode(mode => 

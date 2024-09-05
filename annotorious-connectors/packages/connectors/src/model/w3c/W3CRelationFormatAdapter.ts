@@ -5,6 +5,7 @@ import type {
   FormatAdapter, 
   ImageAnnotation, 
   ParseResult, 
+  W3CAnnotationBody, 
   W3CImageAnnotation, 
   W3CImageFormatAdapter, 
   W3CImageFormatAdapterOpts
@@ -31,7 +32,6 @@ export const W3CImageRelationFormat = (
   source: string,
   opts: W3CImageFormatAdapterOpts = { strict: true, invertY: false }
 ): W3CRelationFormatAdapter => {
-
   const imageAdapter = W3CImageFormat(source, {...opts, strict: false });
 
   const parse = (serialized: W3CImageAnnotation | W3CRelationLinkAnnotation | [W3CRelationLinkAnnotation, W3CRelationMetaAnnotation]) =>
@@ -79,14 +79,28 @@ export const serializeW3C = (
   imageAdapter: W3CImageFormatAdapter
 ): W3CImageAnnotation | W3CRelationLinkAnnotation | [W3CRelationLinkAnnotation, W3CRelationMetaAnnotation] => {
   if (isConnectionAnnotation(annotation)) {
-    const { id, target: { selector: { from, to }} } = annotation;
+    const { id, bodies, target: { selector: { from, to }} } = annotation;
 
-    return { 
+    const link = { 
       id,
       motivation: 'linking',
       body: to,
       target: from
     } as W3CRelationLinkAnnotation;
+
+    if (bodies.length > 0) {
+      const meta = {
+        motivation: 'tagging',
+        body: bodies.map(b => ({
+          value: b.value
+        } as W3CAnnotationBody)),
+        target: id
+      } as W3CRelationMetaAnnotation;
+
+      return [link, meta];
+    } else {
+      return link;
+    }
   } else {
     return imageAdapter.serialize(annotation)
   }

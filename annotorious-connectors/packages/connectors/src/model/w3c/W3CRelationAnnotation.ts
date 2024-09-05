@@ -12,6 +12,8 @@ export interface W3CRelationLinkAnnotation extends Omit<W3CAnnotation, 'body'> {
 
 export interface W3CRelationMetaAnnotation extends Omit<W3CAnnotation, 'target'> {
 
+  motivation?: 'tagging',
+
   target: string;
 
 }
