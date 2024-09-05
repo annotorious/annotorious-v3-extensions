@@ -28,6 +28,8 @@
 
   let floatingConnection: Connection | undefined;
 
+  $: if (!enabled) source = undefined;
+
   $: if (!source) floatingConnection = undefined;
 
   let svgEl: SVGSVGElement;
