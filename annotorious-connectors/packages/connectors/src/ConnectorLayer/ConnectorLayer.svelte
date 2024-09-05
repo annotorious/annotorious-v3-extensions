@@ -66,6 +66,8 @@
       source = undefined;
 
       dispatch('create', annotation);
+
+      selection.setSelected(annotation.id);
     }
   }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { 
   AnnotoriousOpenSeadragonAnnotator, 
+  DrawingStyle, 
   OpenSeadragonAnnotator, 
   OpenSeadragonViewer, 
   useAnnotator,
@@ -36,6 +37,14 @@ const IIIF_SAMPLE = {
      }
   ]
 };
+
+const style = {
+  fill: '#00cc00',
+  fillOpacity: 0.25,
+  stroke: '#00cc00',
+  strokeOpacity: 1,
+  strokeWidth: 2
+} as DrawingStyle;
 
 const OSD_OPTIONS: OpenSeadragon.Options = {
   prefixUrl: 'https://cdn.jsdelivr.net/npm/openseadragon@3.1/build/openseadragon/images/',
@@ -84,7 +93,8 @@ export const App = () => {
       <OpenSeadragonAnnotator 
         // @ts-ignore
         adapter={W3CImageRelationFormat(
-          'https://iiif.bodleian.ox.ac.uk/iiif/image/af315e66-6a85-445b-9e26-012f729fc49c')}>
+          'https://iiif.bodleian.ox.ac.uk/iiif/image/af315e66-6a85-445b-9e26-012f729fc49c')}
+        style={style}>
 
         <OpenSeadragonViewer className="openseadragon" options={OSD_OPTIONS} />
         
