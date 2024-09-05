@@ -41,8 +41,7 @@ export const mountPlugin = (anno: ImageAnnotator<ImageAnnotation>): ConnectorPlu
 
   const setEnabled = (enabled: boolean) => {
     isEnabled = enabled;
-    connectorLayer.$set({ source: undefined });
-    connectorLayer.$set({ enabled: isEnabled });
+    connectorLayer.$set({ source: undefined, enabled: isEnabled });
   }
 
   const unmount = () => {

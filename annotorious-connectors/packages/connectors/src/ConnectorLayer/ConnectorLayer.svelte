@@ -110,36 +110,39 @@
   class:floating={source}
   on:pointermove={onPointerMove}
   on:pointerdown={onPointerDown}>
+  <g class="a9s-connectors-layer" transform={layerTransform}>
+    <g class="a9s-connectors-shape-emphasis">
+      {#if enabled}
+        {#if source}
+          <Emphasis annotation={source} />
+        {/if}
 
-  {#if enabled}
-    {#if source}
-      <Emphasis annotation={source} />
-    {/if}
-
-    {#if $hover}
-      {@const hovered = store.getAnnotation($hover)}
-      {#if hovered}
-        <Emphasis annotation={hovered} />
+        {#if $hover}
+          {@const hovered = store.getAnnotation($hover)}
+          {#if hovered}
+            <Emphasis annotation={hovered} />
+          {/if}
+        {/if}
       {/if}
-    {/if}
-  {/if}
 
-  {#if floatingConnection?.end && 'annotation' in floatingConnection.end}
-    <Emphasis annotation={floatingConnection.end.annotation} />
-  {/if}
+      {#if floatingConnection?.end && 'annotation' in floatingConnection.end}
+        <Emphasis annotation={floatingConnection.end.annotation} />
+      {/if}
+    </g>
 
-  <g class="a9s-connectors" transform={layerTransform}>
-    {#each connections as connection}
-      <Connector
-        bind:this={connectionRefs[connection.id]}
-        annotation={connection}
-        scale={scale}
-        state={state} 
-        isSelected={isSelected(connection.id)}/>
-    {/each}
+    <g class="a9s-connectors">
+      {#each connections as connection}
+        <Connector
+          bind:this={connectionRefs[connection.id]}
+          annotation={connection}
+          scale={scale}
+          state={state} 
+          isSelected={isSelected(connection.id)}/>
+      {/each}
+    </g>
 
     {#if floatingConnection}
-      <g class="a9s-rubberband">
+      <g class="a9s-floating">
         <RubberbandConnector 
           connection={floatingConnection} 
           scale={scale} />

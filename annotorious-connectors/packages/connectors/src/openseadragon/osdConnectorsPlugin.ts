@@ -20,6 +20,7 @@ export const mountOSDPlugin = (
   const connectorLayer = new OSDConnectorLayer({
     target: viewer.element.querySelector('.openseadragon-canvas')!,
     props: {
+      enabled: isEnabled,
       source: undefined as ImageAnnotation | undefined,
       state: anno.state as ImageAnnotatorState<ImageAnnotation>,
       viewer
@@ -43,7 +44,7 @@ export const mountOSDPlugin = (
   const setEnabled = (enabled: boolean) => {
     isEnabled = enabled;
 
-    connectorLayer.$set({ source: undefined });
+    connectorLayer.$set({ source: undefined, enabled: isEnabled });
 
     // TODO this should actually revert to the last
     // action set by the host application. (But how?)

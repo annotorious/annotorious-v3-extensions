@@ -4,8 +4,10 @@
   import type { ImageAnnotation } from '@annotorious/openseadragon';
   import ConnectorLayer from '../ConnectorLayer/ConnectorLayer.svelte';
   import OSDSVGLayer from './OSDSVGLayer.svelte';
-  import type { Point } from 'src/model';
+  import type { Point } from '../model';
 
+  /** Props **/
+  export let enabled: boolean;
   export let source: ImageAnnotation | undefined;
   export let state: ImageAnnotatorState<ImageAnnotation>;
   export let viewer: OpenSeadragon.Viewer;
@@ -27,6 +29,7 @@
 
   <ConnectorLayer 
     bind:this={connectorLayer}
+    enabled={enabled}
     scale={scale}
     source={source}
     state={state} 

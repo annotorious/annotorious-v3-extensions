@@ -20,5 +20,6 @@
     fill: transparent;
     stroke: #cc23cc;
     stroke-width: 2px;
+    vector-effect: non-scaling-stroke;
   }
 </style>
