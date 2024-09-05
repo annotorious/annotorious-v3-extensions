@@ -23,9 +23,10 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        '@annotorious/core',
-        '@annotorious/annotorious',
-        '@annotorious/openseadragon'
+        '@annotorious/react',
+        'openseadragon',
+        'react',
+        'react-dom'
       ],
       output: {
         preserveModules: true,

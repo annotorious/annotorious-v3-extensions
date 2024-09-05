@@ -2,13 +2,31 @@
   "name": "@annotorious/plugin-connectors-react",
   "version": "0.0.1",
   "description": "React bindings for the Annotorious connectors plugin.",
-  "main": "src/index.ts",
   "author": "Rainer Simon",
   "license": "BSD-3-Clause",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/annotorious/annotorious-v3-extensions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/annotorious/annotorious-v3-extensions/issues"
+  },
   "scripts": {
     "start": "vite",
     "build": "vite build"
+  },
+  "module": "dist/annotorious-connectors-react.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/annotorious-connectors-react.es.js"
+    },
+    "./annotorious-connectors-react.css": "./annotorious-connectors-react.css"
   },
   "devDependencies": {
     "@types/react": "^18.3.5",
