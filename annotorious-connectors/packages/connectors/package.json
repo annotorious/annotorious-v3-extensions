@@ -1,6 +1,6 @@
 {
   "name": "@annotorious/plugin-connectors",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An Annotorious plugin for connecting annotations through elbow connectors.",
   "author": "Rainer Simon",
   "license": "BSD-3-Clause",
