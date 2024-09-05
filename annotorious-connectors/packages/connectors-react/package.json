@@ -26,7 +26,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/annotorious-connectors-react.es.js"
     },
-    "./annotorious-connectors-react.css": "./annotorious-connectors-react.css"
+    "./annotorious-connectors-react.css": "./dist/annotorious-connectors-react.css"
   },
   "devDependencies": {
     "@types/react": "^18.3.5",
