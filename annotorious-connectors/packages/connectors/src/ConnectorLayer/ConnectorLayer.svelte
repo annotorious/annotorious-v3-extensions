@@ -79,8 +79,6 @@
   }
 
   const onPointerMove = (evt: PointerEvent) => {
-    hovered = undefined;
-
     const pt: Point = pointerTransform 
         ? pointerTransform({ x: evt.offsetX, y: evt.offsetY })
         : getSVGPoint(evt, svgEl);
@@ -93,10 +91,9 @@
         floatingConnection = getConnection(source, h);
       else
         floatingConnection = getConnection(source, { point: pt });
-    } else if (h) {
-      // Pick current hover as source
-      hovered = h;
     }
+
+    hovered = h;
   }
 
   onMount(() => {
@@ -123,6 +120,7 @@
   bind:this={svgEl}
   class="a9s-connector-layer"
   class:enabled={enabled}
+  class:hover={hovered}
   on:pointermove={onPointerMove}
   on:pointerdown={onPointerDown}>
   <g class="a9s-connectors-layer" transform={layerTransform}>
@@ -175,5 +173,9 @@
 
   svg.enabled {
     pointer-events: all;
+  }
+
+  svg.hover {
+    cursor: pointer;
   }
 </style>
