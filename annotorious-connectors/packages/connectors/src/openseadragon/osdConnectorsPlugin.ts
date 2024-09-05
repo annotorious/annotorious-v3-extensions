@@ -21,18 +21,8 @@ export const mountOSDPlugin = (
     target: viewer.element.querySelector('.openseadragon-canvas')!,
     props: {
       enabled: isEnabled,
-      source: undefined as ImageAnnotation | undefined,
       state: anno.state as ImageAnnotatorState<ImageAnnotation>,
       viewer
-    }
-  });
-
-  connectorLayer.$on('create', () => connectorLayer.$set(({ source: undefined })));
-
-  const unsubscribe = selection.subscribe(({ selected }) => {
-    if (isEnabled && selected.length > 0) {
-      const source = store.getAnnotation(selected[0].id);
-      connectorLayer.$set(({ source }));
     }
   });
 
@@ -44,7 +34,7 @@ export const mountOSDPlugin = (
   const setEnabled = (enabled: boolean) => {
     isEnabled = enabled;
 
-    connectorLayer.$set({ source: undefined, enabled: isEnabled });
+    connectorLayer.$set({ enabled: isEnabled });
 
     // TODO this should actually revert to the last
     // action set by the host application. (But how?)
@@ -54,7 +44,9 @@ export const mountOSDPlugin = (
       anno.setUserSelectAction(UserSelectAction.EDIT);
   }
 
-  const unmount = () => unsubscribe();
+  const unmount = () => {
+    // Nothing to do
+  }
 
   return { 
     getMidpoint,

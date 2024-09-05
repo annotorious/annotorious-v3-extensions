@@ -86,6 +86,13 @@
 
         var anno = createOSDAnnotator(viewer, {
           adapter: W3CImageRelationFormat('https://iiif.bodleian.ox.ac.uk/iiif/image/af315e66-6a85-445b-9e26-012f729fc49c'),
+          style: {
+            fill: '#00cc00',
+            fillOpacity: 0.25,
+            stroke: '#00cc00',
+            strokeOpacity: 1,
+            strokeWidth: 2
+          }
         });
 
         anno.on('createAnnotation', a => console.log('created', a));
