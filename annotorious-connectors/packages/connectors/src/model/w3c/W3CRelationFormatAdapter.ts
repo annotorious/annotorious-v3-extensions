@@ -24,7 +24,7 @@ const isW3CRelationLinkAnnotation = (arg: any): arg is W3CRelationLinkAnnotation
   typeof arg.target === 'string';
 
 const isW3CRelationMetaAnnotation = (arg: any): arg is W3CRelationMetaAnnotation =>
-  (arg.motivation === undefined || arg.motivation === 'tagging') ||
+  (arg.motivation === undefined || arg.motivation === 'tagging') &&
    typeof arg.target === 'string';
 
 // Shorthand 
@@ -79,27 +79,23 @@ export const W3CImageRelationFormat = (
   const serialize = (annotation: ImageAnnotation | ConnectionAnnotation) =>
     serializeW3C(annotation, imageAdapter);
 
-  return { parse, serialize }
+  return { parse, parseAll, serialize }
 }
 
 export const parseW3C = (
   arg: W3CAnnotationOrRelation,
   imageAdapter: W3CImageFormatAdapter 
 ): ParseResult<ImageAnnotation | ConnectionAnnotation> => {
-  if (Array.isArray(arg)) {
 
-    // TODO
-    const parsed = 'foo' as unknown as ConnectionAnnotation;
-
-
-    return { parsed };
-  } else if (isW3CRelationLinkAnnotation(arg)) {
+  const parseConnection = (arg: W3CRelationLinkAnnotation, meta?: W3CRelationMetaAnnotation) => {
     const { id, body, target } = arg;
 
     const parsed: ConnectionAnnotation = {
       id,
       motivation: 'linking',
-      bodies: [],
+      bodies: meta 
+        ? Array.isArray(meta.body) ? meta.body : [meta.body]
+        : [],
       target: {
         annotation: id,
         selector: {
@@ -109,6 +105,15 @@ export const parseW3C = (
       }
     };
 
+    return parsed;
+  };
+
+  if (Array.isArray(arg)) {
+    const [link, meta] = arg;
+    const parsed = parseConnection(link, meta);
+    return { parsed };
+  } else if (isW3CRelationLinkAnnotation(arg)) {
+    const parsed = parseConnection(arg);
     return { parsed };
   } else {
     return imageAdapter.parse(arg)
