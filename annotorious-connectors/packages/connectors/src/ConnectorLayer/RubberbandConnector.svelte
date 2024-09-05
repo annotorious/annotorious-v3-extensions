@@ -32,27 +32,27 @@
   }
 
   path.a9s-connector-path-outer {
-    stroke: #00000040;
-    stroke-width: 3.5px;
+    stroke: #ffffff40;
+    stroke-width: 2.5px;
   }
 
   path.a9s-connector-path-inner {
-    stroke: #fff;
-    stroke-width: 1.5px;
+    stroke: #cc23cc;
+    stroke-width: 2.5px;
     stroke-dasharray: 3 3;
   }
 
   circle.a9s-connector-handle-outer {
-    fill: #00000040;
-    stroke: #00000040;
+    fill: #ffffff40;
+    stroke: #ffffff40;
     stroke-width: 3;
     vector-effect: non-scaling-stroke;
   }
 
   circle.a9s-connector-handle-inner {
-    fill: #000;
-    stroke: #fff;
-    stroke-width: 1.5;
+    fill: #fff;
+    stroke: #cc23cc;
+    stroke-width: 2;
     vector-effect: non-scaling-stroke;
   }
 </style>

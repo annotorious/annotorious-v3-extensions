@@ -5,12 +5,14 @@
   import type { Annotation, ImageAnnotation, ImageAnnotatorState, StoreChangeEvent } from '@annotorious/annotorious';
   import { getConnection } from '../layout';
   import type { Connection, ConnectionAnnotation, ConnectionHandle, PinnedConnectionHandle, Point } from '../model';
+  import { Emphasis } from './emphasis';
   import Connector from './Connector.svelte';
   import RubberbandConnector from './RubberbandConnector.svelte';
 
 	const dispatch = createEventDispatcher<{ create: ConnectionAnnotation }>();
 
   /** Props */
+  export let enabled: boolean;
   export let source: ImageAnnotation | undefined;
   export let state: ImageAnnotatorState<ImageAnnotation>;
   export let layerTransform: string | undefined = undefined;
@@ -27,7 +29,7 @@
 
   let svgEl: SVGSVGElement;
 
-  const { selection, store } = state;
+  const { hover, selection, store } = state;
 
   export const getMidpoint = (id: string) => {
     const component = connectionRefs[id];
@@ -60,6 +62,8 @@
 
       // @ts-ignore
       store.addAnnotation(annotation);
+
+      source = undefined;
 
       dispatch('create', annotation);
     }
@@ -102,9 +106,28 @@
 <svg 
   bind:this={svgEl}
   class="a9s-connector-layer"
-  class:active={source}
+  class:enabled={enabled}
+  class:floating={source}
   on:pointermove={onPointerMove}
   on:pointerdown={onPointerDown}>
+
+  {#if enabled}
+    {#if source}
+      <Emphasis annotation={source} />
+    {/if}
+
+    {#if $hover}
+      {@const hovered = store.getAnnotation($hover)}
+      {#if hovered}
+        <Emphasis annotation={hovered} />
+      {/if}
+    {/if}
+  {/if}
+
+  {#if floatingConnection?.end && 'annotation' in floatingConnection.end}
+    <Emphasis annotation={floatingConnection.end.annotation} />
+  {/if}
+
   <g class="a9s-connectors" transform={layerTransform}>
     {#each connections as connection}
       <Connector
@@ -135,7 +158,7 @@
     width: 100%;
   }
 
-  svg.active {
+  svg.enabled.floating {
     pointer-events: all;
   }
 </style>
