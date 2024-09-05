@@ -27,10 +27,12 @@ export default defineConfig({
         format === 'umd' ? `annotorious-connectors.js` : `annotorious-connectors.es.js` 
     },
     rollupOptions: {
-      external: [
-        ...Object.keys(packageJson.peerDependencies)
-      ],
+      external: ['@annotorious/annotorious', 'openseadragon'],
       output: {
+        globals: {
+          '@annotorious/annotorious': 'Annotorious',
+          'openseadragon': 'OpenSeadragon'
+        },
         assetFileNames: 'annotorious-connectors.[ext]'
       }
     }
