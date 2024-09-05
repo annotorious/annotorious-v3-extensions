@@ -14,10 +14,3 @@
     height={h} />
 </g>
 
-<style>
-  .a9s-annotation-emphasis rect {
-    fill: transparent;
-    stroke: #cc23cc;
-    stroke-width: 2px;
-  }
-</style>
