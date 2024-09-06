@@ -26,10 +26,14 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
+        '@annotorious/annotorious', 
+        '@annotorious/openseadragon', 
         'openseadragon'
       ],
       output: {
         globals: {
+          '@annotorious/annotorious': 'Annotorious',
+          '@annotorious/openseadragon': 'AnnotoriousOSD', 
           'openseadragon': 'OpenSeadragon'
         },
         assetFileNames: 'annotorious-connectors.[ext]'

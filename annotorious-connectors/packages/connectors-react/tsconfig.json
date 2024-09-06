@@ -4,6 +4,7 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "composite": true,
     "declaration": true,
     "declarationDir": "types",
     "declarationMap": true,

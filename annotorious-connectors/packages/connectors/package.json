@@ -1,6 +1,6 @@
 {
   "name": "@annotorious/plugin-connectors",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "An Annotorious plugin for connecting annotations through elbow connectors.",
   "author": "Rainer Simon",
   "license": "BSD-3-Clause",
@@ -42,6 +42,8 @@
     "vite-plugin-dts": "^4.1.0"
   },
   "peerDependencies": {
+    "@annotorious/annotorious": "^3.0.5",
+    "@annotorious/openseadragon": "^3.0.5",
     "openseadragon": "^3.0.0 || ^4.0.0 || ^5.0.0"
   },
   "peerDependenciesMeta": {
@@ -50,8 +52,6 @@
     }
   },
   "dependencies": {
-    "@annotorious/annotorious": "^3.0.5",
-    "@annotorious/openseadragon": "^3.0.5",
     "nanoevents": "^9.0.0",
     "svg-round-corners": "^0.4.3",
     "uuid": "^10.0.0"
