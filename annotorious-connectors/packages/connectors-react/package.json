@@ -1,6 +1,6 @@
 {
   "name": "@annotorious/plugin-connectors-react",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "React bindings for the Annotorious connectors plugin.",
   "author": "Rainer Simon",
   "license": "BSD-3-Clause",
@@ -49,7 +49,7 @@
     }
   },
   "dependencies": {
-    "@annotorious/plugin-connectors": "0.0.9",
+    "@annotorious/plugin-connectors": "0.0.10",
     "@floating-ui/react": "^0.26.23",
     "uuid": "^10.0.0"
   },

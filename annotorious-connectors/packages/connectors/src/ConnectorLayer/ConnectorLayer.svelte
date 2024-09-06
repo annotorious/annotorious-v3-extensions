@@ -90,8 +90,6 @@
 
     const h = store.getAt(pt.x, pt.y);
 
-    console.log('hver', pt, h);
-
     if (source) {
       // Source defined - pick target
       if (h)
