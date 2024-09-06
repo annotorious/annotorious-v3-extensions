@@ -83,11 +83,14 @@
   }
 
   const onPointerMove = (evt: PointerEvent) => {
+
     const pt: Point = pointerTransform 
         ? pointerTransform({ x: evt.offsetX, y: evt.offsetY })
         : getSVGPoint(evt, svgEl);
 
     const h = store.getAt(pt.x, pt.y);
+
+    console.log('hver', pt, h);
 
     if (source) {
       // Source defined - pick target

@@ -23,12 +23,14 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [
-        '@annotorious/react',
         'openseadragon',
         'react',
         'react-dom'
       ],
       output: {
+        globals: {
+          'openseadragon': 'OpenSeadragon'
+        },
         preserveModules: true,
         assetFileNames: 'annotorious-connectors-react.[ext]'
       }

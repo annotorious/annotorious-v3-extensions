@@ -1,6 +1,6 @@
 {
   "name": "@annotorious/connectors-monorepo",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Annotorious Connectors Plugin Monorepo",
   "author": "Rainer Simon",
   "repository": {
