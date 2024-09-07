@@ -1,3 +1,4 @@
-# Annotorious Selector Pack
+# Annotorious Tools Plugin
 
-Additional drawing tools for Annotorious.
+The Annotorious Tools Plugin has moved here:
+https://github.com/annotorious/annotorious-plugin-tools
